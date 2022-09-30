@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgres-db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "wordict"
+      POSTGRES_USER: "wordict"
+      POSTGRES_PASSWORD: "wordict"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+volumes:
+  postgres:
