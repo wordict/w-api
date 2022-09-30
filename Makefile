@@ -20,8 +20,6 @@ drop-tables:
 	go build -o postgres_drop  ./seed/cmd  && ./postgres_drop -type=drop && rm -rf postgres_drop && clear
 
 generate-mocks:
-	mockgen -destination=internal/mocks/web/mock_service.go -package mocks github.com/eneskzlcn/wordict/internal/web Service
-	mockgen -destination=internal/mocks/web/mock_renderer.go -package mocks github.com/eneskzlcn/wordict/internal/web Renderer
-	mockgen -destination=internal/mocks/web/mock_logger.go -package mocks github.com/eneskzlcn/wordict/internal/core/logger Logger
-	mockgen -destination=internal/mocks/web/mock_session.go -package mocks github.com/eneskzlcn/wordict/internal/core/session Session
-	mockgen -destination=internal/core/mocks/mock_zap_logger.go -package mocks github.com/eneskzlcn/wordict/internal/core/logger ZapLogger
+	mockgen -destination=internal/mocks/handler/mock_service.go -package mocks github.com/wordict/w-api/internal/handler Service
+	mockgen -destination=internal/mocks/logger/mock_logger.go -package mocks github.com/wordict/w-api/internal/core/logger Logger
+
