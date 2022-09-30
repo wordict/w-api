@@ -1,0 +1,9 @@
+db:
+  username: "wordict"
+  password: "wordict"
+  dbName: "wordict"
+  host: "localhost"
+  port: "5432"
+
+server:
+  port: "4000"
