@@ -27,8 +27,9 @@ func (h *Handler) Signup(ctx *fiber.Ctx) error {
 	}
 	h.logger.Debugf("Signup request arrived with User Email:", request.Email)
 	if err := h.service.Signup(ctx.Context(), request); err != nil {
-		return ctx.SendStatus(fiber.StatusInternalServerError)
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
+
 	return ctx.SendStatus(fiber.StatusOK)
 }
 

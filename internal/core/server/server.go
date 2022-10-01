@@ -26,7 +26,7 @@ type Server struct {
 
 func New(handlers []Handler, config config.Server, logger Logger) *Server {
 	app := fiber.New()
-	app.Use(cors.New())
+	app.Use(cors.New(cors.ConfigDefault))
 	for _, handler := range handlers {
 		handler.RegisterRoutes(app)
 	}

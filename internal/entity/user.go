@@ -1,5 +1,10 @@
 package entity
 
+import (
+	"github.com/wordict/w-api/internal/core/errors"
+	"net/mail"
+)
+
 type User struct {
 	ID        string `json:"id"`
 	Email     string `json:"email"`
@@ -11,6 +16,20 @@ type User struct {
 type SignupRequest struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
+}
+
+type SignupRequestDTO struct {
+	ID       string `json:"id"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+func (sr SignupRequest) Validate() error {
+	_, err := mail.ParseAddress(sr.Email)
+	if err != nil {
+		return errors.InvalidEmail
+	}
+	return nil
 }
 
 type SignupResponse struct{}
