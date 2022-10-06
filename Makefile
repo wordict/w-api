@@ -1,9 +1,6 @@
 build:
 	go build -o bin/wordict  ./cmd/wordict
 
-run:
-	./bin/wordict
-
 start:
 	clear && go build -o bin/wordict  ./cmd/wordict && ./bin/wordict
 
