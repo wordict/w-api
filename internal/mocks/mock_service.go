@@ -38,7 +38,7 @@ func (m *MockService) EXPECT() *MockServiceMockRecorder {
 // Signup mocks base method.
 func (m *MockService) Signup(arg0 context.Context, arg1 entity.SignupRequest) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Signup", arg0, arg1)
+	ret := m.ctrl.Call(m, "SignUp", arg0, arg1)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
@@ -46,5 +46,5 @@ func (m *MockService) Signup(arg0 context.Context, arg1 entity.SignupRequest) er
 // Signup indicates an expected call of Signup.
 func (mr *MockServiceMockRecorder) Signup(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Signup", reflect.TypeOf((*MockService)(nil).Signup), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SignUp", reflect.TypeOf((*MockService)(nil).Signup), arg0, arg1)
 }

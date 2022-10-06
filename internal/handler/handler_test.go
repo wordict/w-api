@@ -23,7 +23,7 @@ func createHandlerMocks(t *testing.T) (*mocks.MockLogger, *mocks.MockService) {
 }
 func createFiberAppForHandler(h *handler.Handler) *fiber.App {
 	app := fiber.New()
-	app.Post("/signup", h.Signup)
+	app.Post("/signup", h.SignUp)
 	return app
 }
 func makeTestRequestWithBody(method string, route string, body interface{}) *http.Request {

@@ -10,6 +10,7 @@ import (
 
 type Repository interface {
 	CreateUser(ctx context.Context, signupRequestDto entity.SignupRequestDTO) error
+	IsUserExist(ctx context.Context, signInRequestDto entity.SignInRequestDTO) (entity.User, error)
 }
 
 type Service struct {
@@ -21,7 +22,7 @@ func New(repository Repository, logger logger.Logger) *Service {
 	return &Service{repository: repository, logger: logger}
 }
 
-func (s *Service) Signup(ctx context.Context, request entity.SignupRequest) error {
+func (s *Service) SignUp(ctx context.Context, request entity.SignupRequest) error {
 	if err := request.Validate(); err != nil {
 		return err
 	}
@@ -31,4 +32,19 @@ func (s *Service) Signup(ctx context.Context, request entity.SignupRequest) erro
 		Email:    request.Email,
 		Password: request.Password,
 	})
+}
+
+func (s *Service) SignIn(ctx context.Context, request entity.SignInRequest) (entity.SignInResponse, error) {
+	user, err := s.repository.IsUserExist(ctx, entity.SignInRequestDTO{
+		Email:    request.Email,
+		Password: request.Password,
+	})
+	if err != nil {
+		return entity.SignInResponse{}, err
+	}
+	return entity.SignInResponse{
+		ID:       user.ID,
+		Email:    user.Email,
+		Password: user.Password,
+	}, nil
 }

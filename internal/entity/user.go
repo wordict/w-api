@@ -24,6 +24,22 @@ type SignupRequestDTO struct {
 	Password string `json:"password"`
 }
 
+type SignInRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+type SignInResponse struct {
+	ID       string `json:"id"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+type SignInRequestDTO struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 func (sr SignupRequest) Validate() error {
 	_, err := mail.ParseAddress(sr.Email)
 	if err != nil {
