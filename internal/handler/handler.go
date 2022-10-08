@@ -31,5 +31,11 @@ func New(service Service, logger logger.Logger) *Handler {
 func (h *Handler) RegisterRoutes(app *fiber.App) {
 	app.Post("/signup", h.SignUp)
 	app.Post("/signIn", h.SignIn)
-	app.Post("/vocabulary", h.AddVocabulary)
+	app.Post("/vocabulary", h.AuthenticationMiddleware(h.AddVocabulary))
+}
+
+func (h *Handler) AuthenticationMiddleware(next fiber.Handler) fiber.Handler {
+	return func(ctx *fiber.Ctx) error {
+		return next(ctx)
+	}
 }

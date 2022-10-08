@@ -3,19 +3,22 @@ package entity
 import "time"
 
 type AddVocabularyRequest struct {
-	Data string `json:"data"`
-}
-type AddVocabularyResponse struct {
-	ID           string `json:"id"`
-	Data         string `json:"data"`
+	Word         string `json:"word"`
+	UserID       string `json:"user_id"`
 	FromLanguage string `json:"from_language"`
 	ToLanguage   string `json:"to_language"`
-	CreatedAt    string `json:"created_at"`
-	UserID       string `json:"user_id"`
+}
+type AddVocabularyResponse struct {
+	ID           string    `json:"id"`
+	Word         string    `json:"word"`
+	FromLanguage string    `json:"from_language"`
+	ToLanguage   string    `json:"to_language"`
+	CreatedAt    time.Time `json:"created_at"`
+	UserID       string    `json:"user_id"`
 }
 type Vocabulary struct {
 	ID           string
-	Data         string
+	Word         string
 	UserID       string
 	FromLanguage string
 	ToLanguage   string
@@ -25,7 +28,7 @@ type Vocabulary struct {
 }
 type AddVocabularyRequestDTO struct {
 	ID           string
-	Data         string
+	Word         string
 	Translation  string
 	UserID       string
 	FromLanguage string
